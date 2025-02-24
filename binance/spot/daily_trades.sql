@@ -33,9 +33,17 @@ create or replace view binance__spot__daily_trades as (
         '
     )
 )
-comment '
-    Daily trades of spot pairs on the Binance exchange.
-    Table schema is available at https://github.com/binance/binance-public-data/.
-
-    Usage: select * from binance__spot__daily_trades(pair=\'WBTCETH\', from=\'2025-01-01\', to=\'2025-01-03\')
-'
+comment $heredoc${
+    "short": "Daily trades of spot pairs on the Binance exchange.",
+    "url": "https://github.com/binance/binance-public-data/",
+    "usage": "select * from binance__spot__daily_trades(pair='WBTCETH', from='2025-01-01', to='2025-01-03')",
+    "columns": [
+        {"name": "trade_id"         , "type": "UInt64"},
+        {"name": "price"            , "type": "Float64"},
+        {"name": "qty"              , "type": "Float64"},
+        {"name": "quote_qty"        , "type": "Float64"},
+        {"name": "time"             , "type": "Int64"},
+        {"name": "is_buyer_maker"   , "type": "Bool"},
+        {"name": "is_best_match"    , "type": "Bool"}
+    ]
+}$heredoc$;
