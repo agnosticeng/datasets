@@ -1,15 +1,4 @@
 create or replace view binance__spot__daily_trades as (
-    with 
-        (
-            select arrayStringConcat(
-                arrayMap(
-                    x -> toDate(x),  
-                    range(toInt32({from:Date}), toInt32({to:Date}))
-                ),
-                ','
-            )
-        ) as dates
-
     select 
         trade_id,
         price,
@@ -19,7 +8,20 @@ create or replace view binance__spot__daily_trades as (
         is_buyer_maker,
         is_best_match
     from s3(
-        'https://data.binance.vision/data/spot/daily/trades/' || {pair:String} || '/' || {pair:String} || '-trades-{' || dates || '}.zip :: *.csv',
+        'https://data.binance.vision/data/spot/daily/trades/' || 
+        {pair:String} || 
+        '/' || 
+        {pair:String} || 
+        '-trades-{' || (
+            select arrayStringConcat(
+                arrayMap(
+                    x -> toDate(x),  
+                    range(toInt32({from:Date}), toInt32({to:Date}))
+                ),
+                ','
+            )
+        )
+        || '}.zip :: *.csv',
         NOSIGN,
         CSV,
         '
@@ -47,3 +49,7 @@ comment $heredoc${
         {"name": "is_best_match"    , "type": "Bool"}
     ]
 }$heredoc$;
+
+
+select * from binance__spot__daily_trades(pair='WBTCETH', from='2025-01-01', to='2025-01-03')
+
