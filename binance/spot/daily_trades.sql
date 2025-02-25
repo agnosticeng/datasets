@@ -16,6 +16,7 @@ create or replace view binance__spot__daily_trades as (
         ) as date_pattern
 
     select 
+        _path as file_path,
         trade_id,
         price,
         qty,
@@ -43,17 +44,20 @@ create or replace view binance__spot__daily_trades as (
             is_best_match Bool
         '
     )
+    settings 
+        s3_ignore_file_doesnt_exist=1
 )
 comment $heredoc${
     "short": "Daily trades of spot pairs on the Binance exchange.",
     "url": "https://github.com/binance/binance-public-data/",
     "usage": "select * from binance__spot__daily_trades(pair='WBTCETH', from='2025-01-01', to='2025-01-03')",
     "columns": [
+        {"name": "file_path"        , "type": "String"},
         {"name": "trade_id"         , "type": "UInt64"},
         {"name": "price"            , "type": "Float64"},
         {"name": "qty"              , "type": "Float64"},
         {"name": "quote_qty"        , "type": "Float64"},
-        {"name": "time"             , "type": "Int64"},
+        {"name": "time"             , "type": "DateTime64(3,'UTC')"},
         {"name": "is_buyer_maker"   , "type": "Bool"},
         {"name": "is_best_match"    , "type": "Bool"}
     ]

@@ -16,6 +16,7 @@ create or replace view binance__spot__daily_klines as (
         ) as date_pattern
 
     select 
+        _path as file_path,
         toDateTime64(open_time/1000000, 3, 'UTC') as open_time,
         open,
         high,
@@ -57,19 +58,22 @@ create or replace view binance__spot__daily_klines as (
             ignore Int8
         '
     )
+    settings 
+        s3_ignore_file_doesnt_exist=1
 )
 comment $heredoc${
     "short": "Daily klines of spot pairs on the Binance exchange.",
     "url": "https://github.com/binance/binance-public-data/",
     "usage": "select * from binance__spot__daily_klines(pair='WBTCETH', interval='15m', from='2025-01-01', to='2025-01-03')",
     "columns": [
-        {"name": "open_time"                    , "type": "Int64"},
+        {"name": "file_path"                    , "type": "String"},
+        {"name": "open_time"                    , "type": "DateTime64(3,'UTC')"},
         {"name": "open"                         , "type": "Float64"},
         {"name": "high"                         , "type": "Float64"},
         {"name": "low"                          , "type": "Float64"},
         {"name": "close"                        , "type": "Float64"},
         {"name": "volume"                       , "type": "Float64"},
-        {"name": "close_time"                   , "type": "Int64"},
+        {"name": "close_time"                   , "type": "DateTime64(3,'UTC')"},
         {"name": "quote_asset_volume"           , "type": "Float64"},
         {"name": "number_of_trades"             , "type": "UInt64"},
         {"name": "taker_buy_base_asset_volume"  , "type": "Float64"},
