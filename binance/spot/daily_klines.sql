@@ -78,6 +78,6 @@ comment $heredoc${
         {"name": "number_of_trades"             , "type": "UInt64"},
         {"name": "taker_buy_base_asset_volume"  , "type": "Float64"},
         {"name": "taker_buy_quote_asset_volume" , "type": "Float64"},
-        {"name": "ignore"                       , "type": "Int8"},
+        {"name": "ignore"                       , "type": "Int8"}
     ]
 }$heredoc$;
