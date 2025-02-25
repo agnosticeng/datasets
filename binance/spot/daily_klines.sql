@@ -1,12 +1,28 @@
 create or replace view binance__spot__daily_klines as (
+    with 
+        (
+            select arrayMap(
+                x -> toDate(x),  
+                range(toInt32({from:Date}), toInt32({to:Date}))
+            )
+        ) as dates,
+
+        (
+            if (
+                length(dates) = 1,
+                toString(dates[1]),
+                '{' || arrayStringConcat(dates, ',') || '}'
+            )
+        ) as date_pattern
+
     select 
-        fromUnixTimestamp(toInt64(open_time/1000000)) as open_time,
+        toDateTime64(open_time/1000000, 3, 'UTC') as open_time,
         open,
         high,
         low,
         close,
         volume,
-        fromUnixTimestamp(toInt64(close_time/1000000)) as close_time,
+        toDateTime64(close_time/1000000, 3, 'UTC') as close_time,
         quote_asset_volume,
         number_of_trades,
         taker_buy_base_asset_volume,
@@ -21,17 +37,9 @@ create or replace view binance__spot__daily_klines as (
         {pair:String} ||
         '-' ||
         {interval:String} ||
-        '-{' ||
-        (
-            select arrayStringConcat(
-                arrayMap(
-                    x -> toDate(x),  
-                    range(toInt32({from:Date}), toInt32({to:Date}))
-                ),
-                ','
-            )
-        )
-        || '}.zip :: *.csv',
+        '-' ||
+        date_pattern ||
+        '.zip :: *.csv',
         NOSIGN,
         CSV,
         '

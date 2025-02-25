@@ -1,11 +1,27 @@
 create or replace view binance__spot__daily_agg_trades as (
+    with 
+        (
+            select arrayMap(
+                x -> toDate(x),  
+                range(toInt32({from:Date}), toInt32({to:Date}))
+            )
+        ) as dates,
+
+        (
+            if (
+                length(dates) = 1,
+                toString(dates[1]),
+                '{' || arrayStringConcat(dates, ',') || '}'
+            )
+        ) as date_pattern
+        
     select 
         aggregate_trade_id,
         price,
         qty,
         first_trade_id,
         latest_trade_id,
-        fromUnixTimestamp(toInt64(timestamp/1000000)) as timestamp,
+        toDateTime64(timestamp/1000000, 3, 'UTC') as timestamp,
         is_buyer_maker,
         is_best_match
     from s3(
@@ -13,16 +29,9 @@ create or replace view binance__spot__daily_agg_trades as (
         {pair:String} || 
         '/' || 
         {pair:String} || 
-        '-aggTrades-{' || (
-            select arrayStringConcat(
-                arrayMap(
-                    x -> toDate(x),  
-                    range(toInt32({from:Date}), toInt32({to:Date}))
-                ),
-                ','
-            )
-        )
-        || '}.zip :: *.csv',
+        '-aggTrades-' ||
+        date_pattern ||
+        '.zip :: *.csv',
         NOSIGN,
         CSV,
         '

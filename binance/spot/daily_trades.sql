@@ -1,10 +1,26 @@
 create or replace view binance__spot__daily_trades as (
+    with 
+        (
+            select arrayMap(
+                x -> toDate(x),  
+                range(toInt32({from:Date}), toInt32({to:Date}))
+            )
+        ) as dates,
+
+        (
+            if (
+                length(dates) = 1,
+                toString(dates[1]),
+                '{' || arrayStringConcat(dates, ',') || '}'
+            )
+        ) as date_pattern
+
     select 
         trade_id,
         price,
         qty,
         quote_qty,
-        fromUnixTimestamp(toInt64(time/1000000)) as time,
+        toDateTime64(time/1000000, 3, 'UTC') as time,
         is_buyer_maker,
         is_best_match
     from s3(
@@ -12,16 +28,9 @@ create or replace view binance__spot__daily_trades as (
         {pair:String} || 
         '/' || 
         {pair:String} || 
-        '-trades-{' || (
-            select arrayStringConcat(
-                arrayMap(
-                    x -> toDate(x),  
-                    range(toInt32({from:Date}), toInt32({to:Date}))
-                ),
-                ','
-            )
-        )
-        || '}.zip :: *.csv',
+        '-trades-' || 
+        date_pattern ||
+        '.zip :: *.csv',
         NOSIGN,
         CSV,
         '
