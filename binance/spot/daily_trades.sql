@@ -49,7 +49,3 @@ comment $heredoc${
         {"name": "is_best_match"    , "type": "Bool"}
     ]
 }$heredoc$;
-
-
-select * from binance__spot__daily_trades(pair='WBTCETH', from='2025-01-01', to='2025-01-03')
-
