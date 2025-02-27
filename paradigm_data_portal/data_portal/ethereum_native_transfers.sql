@@ -1,6 +1,6 @@
-create or replace view paradigm_data_portal__ethereum_contracts as (
+create or replace view paradigm__data_portal__ethereum_native_transfers as (
     with 
-        'https://datasets.paradigm.xyz/datasets/ethereum_contracts' as base_url,
+        'https://datasets.paradigm.xyz/datasets/ethereum_native_transfers' as base_url,
 
         (
             select 
@@ -15,15 +15,11 @@ create or replace view paradigm_data_portal__ethereum_contracts as (
 
     select * from s3(glob_url, NOSIGN, 'Parquet', '
         block_number Nullable(Int64),
-        create_index Nullable(Int64),
+        transfer_index Nullable(Int64),
         transaction_hash Nullable(String),
-        contract_address Nullable(String),
-        deployer Nullable(String),
-        factory Nullable(String),
-        init_code Nullable(String),
-        code Nullable(String),
-        init_code_hash Nullable(String),
-        code_hash Nullable(String)
+        from_address Nullable(String),
+        to_address Nullable(String),
+        value Nullable(String)
     ')
 
     settings 
@@ -32,7 +28,7 @@ create or replace view paradigm_data_portal__ethereum_contracts as (
 )
 
 comment $heredoc${
-    "short": "All historical contract deployments.",
+    "short": "All native transfers in similar format to ERC20 Transfers (excluding tx fees).",
     "url": "https://github.com/paradigmxyz/paradigm-data-portal/tree/main",
-    "usage": "select count(*) from paradigm_data_portal__ethereum_contracts where block_number between 15000000 and 15000100"
+    "usage": "select count(*) from paradigm__data_portal__ethereum_native_transfers where block_number between 15000000 and 15000100"
 }$heredoc$;
