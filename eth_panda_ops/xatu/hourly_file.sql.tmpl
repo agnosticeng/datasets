@@ -1,0 +1,50 @@
+create or replace view eth_panda_ops__xatu__{{ network }}__{{ dataset }} as (
+    with 
+        (
+            select arrayMap(
+                x -> toDateTime64(x, 0, 'UTC'),
+                range(toInt64({from:DateTime64(3, 'UTC')}), toInt64({to:DateTime64(3, 'UTC')}), 60*60)
+            )
+        ) as datetimes,
+
+        (
+            select arrayMap(
+                x -> toYear(x) || '/' || toMonth(x) || '/' || toDayOfMonth(x) || '/' || toHour(x),
+                datetimes
+            )
+        ) as files,
+
+        (
+            if (
+                length(files) = 1,
+                toString(files[1]),
+                '{' || arrayStringConcat(files, ',') || '}'
+            )
+        ) as files_pattern
+
+    select 
+        _path as file_path,
+        *
+    from url(
+        'https://data.ethpandaops.io/xatu/' || {network:String} || '/databases/default/{{ dataset }}/' || files_pattern || '.parquet',
+        'Parquet',
+        $heredoc$
+            {% for column in columns -%}
+            {{ column.name }} {{ column.type }}{{ "," if not loop.last else "" }}
+            {% endfor %}
+        $heredoc$
+    )
+    settings 
+        remote_filesystem_read_prefetch=false,
+        glob_expansion_max_elements=10000
+)
+comment $heredoc${
+    "short": "{{ doc_short }}",
+    "url": "{{ doc_url }}",
+    "usage": "select * from eth_panda_ops__xatu__{{ network }}__{{ dataset }} limit 10",
+    "columns": [
+        {% for column in columns -%}
+        {"name": "{{ column.name }}", "type": "{{ column.type}}"}{{ "," if not loop.last else "" }}
+        {% endfor %}
+    ]
+}$heredoc$;
