@@ -25,7 +25,7 @@ create or replace view flashbots__mempool_dumpster__ethereum_mainnet as (
     select 
         _path as file_path,
         *
-    from url(
+    from s3(
         'https://mempool-dumpster.flashbots.net/ethereum/mainnet/' || files_pattern || '.parquet',
         'Parquet',
         '

@@ -3,13 +3,16 @@ create or replace view sourcify__verified_contracts as (
         'https://export.sourcify.app' as base_url,
 
         (
-            select 
-                files.verified_contracts
+            select  
+                arrayMap(
+                    x -> splitByString('/', x::String)[2],
+                    files.verified_contracts
+                )
             from url(base_url || '/manifest.json')
         ) as files,
 
         (
-            select base_url || '/{' || arrayStringConcat(files, ',') || '}'
+            select base_url || '/verified_contracts/{' || arrayStringConcat(files, ',') || '}'
         ) as glob_url
 
     select * from url(glob_url, 'Parquet', '

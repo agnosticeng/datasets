@@ -3,16 +3,19 @@ create or replace view sourcify__code as (
         'https://export.sourcify.app' as base_url,
 
         (
-            select 
-                files.code
+            select  
+                arrayMap(
+                    x -> splitByString('/', x::String)[2],
+                    files.code
+                )
             from url(base_url || '/manifest.json')
         ) as files,
 
         (
-            select base_url || '/{' || arrayStringConcat(files, ',') || '}'
+            select base_url || '/code/{' || arrayStringConcat(files, ',') || '}'
         ) as glob_url
 
-    select * from url(glob_url, 'Parquet', '
+    select * from s3(glob_url, 'Parquet', '
         code_hash Nullable(String),
         code Nullable(String),
         code_hash_keccak Nullable(String),
