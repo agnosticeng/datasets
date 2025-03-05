@@ -1,4 +1,4 @@
-create dictionary agnostic__blockchain__evm_abi_decoding (
+create or replace dictionary agnostic__blockchain__evm_abi_decoding (
     selector String,
     fullsigs Array(String)
 )
