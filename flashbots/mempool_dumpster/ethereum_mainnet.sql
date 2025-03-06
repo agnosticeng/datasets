@@ -27,6 +27,7 @@ create or replace view flashbots__mempool_dumpster__ethereum_mainnet as (
         *
     from s3(
         'https://mempool-dumpster.flashbots.net/ethereum/mainnet/' || files_pattern || '.parquet',
+        NOSIGN,
         'Parquet',
         '
             timestamp Nullable(DateTime64(3)),
