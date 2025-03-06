@@ -25,7 +25,7 @@ create or replace view eth_panda_ops__xatu__mainnet__mempool_transaction as (
     select 
         _path as file_path,
         *
-    from url(
+    from s3(
         'https://data.ethpandaops.io/xatu/' || {network:String} || '/databases/default/mempool_transaction/' || files_pattern || '.parquet',
         'Parquet',
         $heredoc$
@@ -74,7 +74,7 @@ create or replace view eth_panda_ops__xatu__mainnet__mempool_transaction as (
         remote_filesystem_read_prefetch=false,
         glob_expansion_max_elements=10000
 )
-comment $heredoc${
+comment $comment${
     "short": "Each row represents a transaction that was seen in the mempool by a sentry client. Sentries can report the same transaction multiple times if it has been long enough since the last report.",
     "url": "https://ethpandaops.io/data/xatu/schema/mempool_/",
     "usage": "select * from eth_panda_ops__xatu__mainnet__mempool_transaction limit 10",
@@ -119,4 +119,4 @@ comment $heredoc${
         {"name": "meta_labels", "type": "Map(String, Nullable(String))"}
         
     ]
-}$heredoc$;
+}$comment$;

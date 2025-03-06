@@ -39,8 +39,8 @@ create or replace view sourcify__compiled_contracts as (
         glob_expansion_max_elements=1000
 )
 
-comment $heredoc${
+comment $comment${
     "short": "Compiled contracts from the Sourcify repository.",
     "url": "https://docs.sourcify.dev/docs/repository/sourcify-database/",
     "usage": "select name, language, version, compiler  from sourcify__compiled_contracts limit 100"
-}$heredoc$;
+}$comment$;

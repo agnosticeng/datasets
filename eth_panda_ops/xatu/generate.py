@@ -30,6 +30,8 @@ if __name__ == '__main__':
     cnf = load_config(args.config_file)
 
     for f in cnf.get('files', []):
+        print("generating %s" % f.get('dataset'))
+
         if len(f.get('url', '')) > 0:
             url = f.get('url')
         else: 

@@ -1,0 +1,11 @@
+## Datasets List
+
+The following tables ands views are available:
+
+{% for key, value in datasets.items() %}
+[{{ key }}]({{ key }})
+
+{% for item in value %}
+- `{{ item.table_name }}` - {{ item.short }}
+{% endfor %}
+{% endfor %}

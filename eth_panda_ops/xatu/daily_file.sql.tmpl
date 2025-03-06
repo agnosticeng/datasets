@@ -25,7 +25,7 @@ create or replace view eth_panda_ops__xatu__{{ network }}__{{ dataset }} as (
     select 
         _path as file_path,
         *
-    from url(
+    from s3(
         'https://data.ethpandaops.io/xatu/' || {network:String} || '/databases/default/{{ dataset }}/' || files_pattern || '.parquet',
         'Parquet',
         $heredoc$
@@ -38,7 +38,7 @@ create or replace view eth_panda_ops__xatu__{{ network }}__{{ dataset }} as (
         remote_filesystem_read_prefetch=false,
         glob_expansion_max_elements=10000
 )
-comment $heredoc${
+comment $comment${
     "short": "{{ doc_short }}",
     "url": "{{ doc_url }}",
     "usage": "select * from eth_panda_ops__xatu__{{ network }}__{{ dataset }} limit 10",
@@ -47,4 +47,4 @@ comment $heredoc${
         {"name": "{{ column.name }}", "type": "{{ column.type}}"}{{ "," if not loop.last else "" }}
         {% endfor %}
     ]
-}$heredoc$;
+}$comment$;

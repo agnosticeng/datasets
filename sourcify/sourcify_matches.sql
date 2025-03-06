@@ -29,8 +29,8 @@ create or replace view sourcify__sourcify_matches as (
         glob_expansion_max_elements=1000
 )
 
-comment $heredoc${
+comment $comment${
     "short": "Sourcify matches from the Sourcify repository.",
     "url": "https://docs.sourcify.dev/docs/repository/sourcify-database/",
     "usage": "select * from sourcify__sourcify_matches limit 10"
-}$heredoc$;
+}$comment$;

@@ -66,7 +66,7 @@ create or replace view eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_beacon_co
         remote_filesystem_read_prefetch=false,
         glob_expansion_max_elements=10000
 )
-comment $heredoc${
+comment $comment${
     "short": "Contains beacon API /eth/v1/beacon/states/{state_id}/committees data from each sentry client attached to a beacon node.",
     "url": "https://ethpandaops.io/data/xatu/schema/beacon_api_/",
     "usage": "select * from eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_beacon_committee limit 10",
@@ -103,4 +103,4 @@ comment $heredoc${
         {"name": "meta_labels", "type": "Map(String, Nullable(String))"}
         
     ]
-}$heredoc$;
+}$comment$;

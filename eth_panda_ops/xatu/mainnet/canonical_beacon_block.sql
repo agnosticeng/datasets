@@ -25,7 +25,7 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_block as (
     select 
         _path as file_path,
         *
-    from url(
+    from s3(
         'https://data.ethpandaops.io/xatu/' || {network:String} || '/databases/default/canonical_beacon_block/' || files_pattern || '.parquet',
         'Parquet',
         $heredoc$
@@ -85,7 +85,7 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_block as (
         remote_filesystem_read_prefetch=false,
         glob_expansion_max_elements=10000
 )
-comment $heredoc${
+comment $comment${
     "short": "Contains beacon block from a beacon node.",
     "url": "https://ethpandaops.io/data/xatu/schema/canonical_beacon_/",
     "usage": "select * from eth_panda_ops__xatu__mainnet__canonical_beacon_block limit 10",
@@ -141,4 +141,4 @@ comment $heredoc${
         {"name": "meta_labels", "type": "Map(String, Nullable(String))"}
         
     ]
-}$heredoc$;
+}$comment$;

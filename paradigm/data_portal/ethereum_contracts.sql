@@ -31,8 +31,8 @@ create or replace view paradigm__data_portal__ethereum_contracts as (
         glob_expansion_max_elements=1000
 )
 
-comment $heredoc${
+comment $comment${
     "short": "All historical contract deployments.",
     "url": "https://github.com/paradigmxyz/paradigm-data-portal/tree/main",
     "usage": "select count(*) from paradigm__data_portal__ethereum_contracts where block_number between 15000000 and 15000100"
-}$heredoc$;
+}$comment$;

@@ -27,8 +27,8 @@ create or replace view paradigm__data_portal__ethereum_slots as (
         glob_expansion_max_elements=1000
 )
 
-comment $heredoc${
+comment $comment${
     "short": "All slots of each contract, including historical usage metadata.",
     "url": "https://github.com/paradigmxyz/paradigm-data-portal/tree/main",
     "usage": "select * from paradigm__data_portal__ethereum_slots limit 10"
-}$heredoc$;
+}$comment$;

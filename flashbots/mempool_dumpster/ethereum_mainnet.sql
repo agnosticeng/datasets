@@ -51,7 +51,7 @@ create or replace view flashbots__mempool_dumpster__ethereum_mainnet as (
         '
     )
 )
-comment $heredoc${
+comment $comment${
     "short": "Dump of all mempool transactions by Flashbots.",
     "url": "https://github.com/flashbots/mempool-dumpster",
     "usage": "select date_trunc('day', timestamp) as date, avg(toUInt256(gasPrice)) from flashbots__mempool_dumpster__ethereum_mainnet(from='2025-02-01', to='2025-02-10') group by date order by date asc",
@@ -76,4 +76,4 @@ comment $heredoc${
         {"name": "inclusionDelayMs"         , "type": "Nullable(Int64)"},
         {"name": "rawTx"                    , "type": "Nullable(String)"}
     ]
-}$heredoc$;
+}$comment$;

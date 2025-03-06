@@ -47,7 +47,7 @@ create or replace view binance__spot__daily_trades as (
     settings 
         s3_ignore_file_doesnt_exist=1
 )
-comment $heredoc${
+comment $comment${
     "short": "Daily trades of spot pairs on the Binance exchange.",
     "url": "https://github.com/binance/binance-public-data/",
     "usage": "select * from binance__spot__daily_trades(pair='WBTCETH', from='2025-01-01', to='2025-01-03')",
@@ -61,4 +61,4 @@ comment $heredoc${
         {"name": "is_buyer_maker"   , "type": "Bool"},
         {"name": "is_best_match"    , "type": "Bool"}
     ]
-}$heredoc$;
+}$comment$;

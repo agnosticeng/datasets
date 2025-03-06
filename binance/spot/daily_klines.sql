@@ -61,7 +61,7 @@ create or replace view binance__spot__daily_klines as (
     settings 
         s3_ignore_file_doesnt_exist=1
 )
-comment $heredoc${
+comment $comment${
     "short": "Daily klines of spot pairs on the Binance exchange.",
     "url": "https://github.com/binance/binance-public-data/",
     "usage": "select * from binance__spot__daily_klines(pair='WBTCETH', interval='15m', from='2025-01-01', to='2025-01-03')",
@@ -80,4 +80,4 @@ comment $heredoc${
         {"name": "taker_buy_quote_asset_volume" , "type": "Float64"},
         {"name": "ignore"                       , "type": "Int8"}
     ]
-}$heredoc$;
+}$comment$;

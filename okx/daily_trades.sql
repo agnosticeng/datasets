@@ -45,7 +45,7 @@ create or replace view okx__daily_trades as (
         s3_ignore_file_doesnt_exist=1,
         input_format_with_names_use_header=0
 )
-comment $heredoc${
+comment $comment${
     "short": "Daily trades of spot pairs on the OKX exchange.",
     "url": "https://www.okx.com/data-download",
     "usage": "select * from okx__daily_trades(pair='1INCH-EUR', from='2025-02-02', to='2025-02-05')",
@@ -56,4 +56,4 @@ comment $heredoc${
         {"name": "price"            , "type": "Float64"},
         {"name": "created_time"     , "type": "DateTime64(3,'UTC')"}
     ]
-}$heredoc$;
+}$comment$;

@@ -27,8 +27,8 @@ create or replace view paradigm__data_portal__ethereum_native_transfers as (
         glob_expansion_max_elements=1000
 )
 
-comment $heredoc${
+comment $comment${
     "short": "All native transfers in similar format to ERC20 Transfers (excluding tx fees).",
     "url": "https://github.com/paradigmxyz/paradigm-data-portal/tree/main",
     "usage": "select count(*) from paradigm__data_portal__ethereum_native_transfers where block_number between 15000000 and 15000100"
-}$heredoc$;
+}$comment$;

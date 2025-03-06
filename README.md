@@ -5,18 +5,7 @@ This repository contains agnostic datasets that can be loaded into various datab
 
 ## Datasets List
 
-The following blockchain dataset views are available:
-
-[agnostic/blockchain/ethereum_mainnet](agnostic/blockchain/ethereum_mainnet)
-
-- `agnostic__blockchain__ethereum_mainnet__blocks` - Block level data
-- `agnostic__blockchain__ethereum_mainnet__logs` - Event log data
-- `agnostic__blockchain__ethereum_mainnet__transactions` - Transaction data
-- `agnostic__blockchain__ethereum_mainnet__traces` - Transaction trace data
-- `agnostic__blockchain__ethereum_mainnet__decoded_logs` - Decoded event log data
-
-[binance/spot](binance/spot)
-- `binance__spot__daily_trades` - Daily trades data for every pair on the Binance CEX
+See [here](datasets.md).
 
 ### Prerequisites
 

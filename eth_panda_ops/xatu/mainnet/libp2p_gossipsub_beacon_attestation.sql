@@ -25,7 +25,7 @@ create or replace view eth_panda_ops__xatu__mainnet__libp2p_gossipsub_beacon_att
     select 
         _path as file_path,
         *
-    from url(
+    from s3(
         'https://data.ethpandaops.io/xatu/' || {network:String} || '/databases/default/libp2p_gossipsub_beacon_attestation/' || files_pattern || '.parquet',
         'Parquet',
         $heredoc$
@@ -82,7 +82,7 @@ create or replace view eth_panda_ops__xatu__mainnet__libp2p_gossipsub_beacon_att
         remote_filesystem_read_prefetch=false,
         glob_expansion_max_elements=10000
 )
-comment $heredoc${
+comment $comment${
     "short": "Table for libp2p gossipsub beacon attestation data.",
     "url": "https://ethpandaops.io/data/xatu/schema/libp2p_/",
     "usage": "select * from eth_panda_ops__xatu__mainnet__libp2p_gossipsub_beacon_attestation limit 10",
@@ -135,4 +135,4 @@ comment $heredoc${
         {"name": "meta_network_name", "type": "Nullable(String)"}
         
     ]
-}$heredoc$;
+}$comment$;

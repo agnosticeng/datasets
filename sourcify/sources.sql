@@ -30,8 +30,8 @@ create or replace view sourcify__sources as (
         glob_expansion_max_elements=1000
 )
 
-comment $heredoc${
+comment $comment${
     "short": "Contract source files from the Sourcify repository.",
     "url": "https://docs.sourcify.dev/docs/repository/sourcify-database/",
     "usage": "select * from sourcify__sources limit 10"
-}$heredoc$;
+}$comment$;

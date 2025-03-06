@@ -30,8 +30,8 @@ create or replace view sourcify__code as (
         glob_expansion_max_elements=1000
 )
 
-comment $heredoc${
+comment $comment${
     "short": "Contracts code from the Sourcify repository.",
     "url": "https://docs.sourcify.dev/docs/repository/sourcify-database/",
     "usage": "select * from sourcify__code limit 10"
-}$heredoc$;
+}$comment$;
