@@ -185,7 +185,7 @@ tables:
 
   - network: mainnet
     dataset: canonical_beacon_validators
-    template: daily_file.sql.tmpl
+    template: hourly_file.sql.tmpl
     url_pattern: hourly
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains a validator state for an epoch.
@@ -195,7 +195,7 @@ tables:
 
   - network: mainnet
     dataset: libp2p_gossipsub_beacon_attestation
-    template: daily_file.sql.tmpl
+    template: hourly_file.sql.tmpl
     url_pattern: hourly
     doc_url: https://ethpandaops.io/data/xatu/schema/libp2p_/
     doc_short: Table for libp2p gossipsub beacon attestation data.
