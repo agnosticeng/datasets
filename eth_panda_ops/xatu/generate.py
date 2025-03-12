@@ -30,14 +30,15 @@ if __name__ == '__main__':
     cnf = load_config(args.config_file)
 
     for f in cnf.get('files', []):
-        print("generating %s" % f.get('dataset'))
-
         if len(f.get('url', '')) > 0:
             url = f.get('url')
         else: 
             url = url_patterns[f.get('url_pattern', 'daily')] % (f.get('network'), f.get('dataset'))
 
-        columns = chdb.query("describe url('%s')" % url, 'Dataframe').to_dict('records')
+        query = "describe url('%s')" % url
+        print("generating %s: %s" % (f.get('dataset'), query))
+
+        columns = chdb.query(query, 'Dataframe').to_dict('records')
         path = os.path.join(os.path.dirname(__file__), f.get('network'), f.get('dataset')+'.sql')
         template_path = os.path.join(os.path.dirname(__file__), f.get('template'))
 
@@ -46,7 +47,8 @@ if __name__ == '__main__':
             dataset=f.get('dataset'), 
             network=f.get('network'),
             doc_short=f.get('doc_short', ''),
-            doc_url=f.get('doc_url', '')
+            doc_url=f.get('doc_url', ''),
+            doc_usage=Template(f.get('doc_usage', '')).render(f)
         )
 
         write_file(path, content)

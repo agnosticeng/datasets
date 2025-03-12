@@ -41,7 +41,7 @@ create or replace view eth_panda_ops__xatu__{{ network }}__{{ dataset }} as (
 comment $comment${
     "short": "{{ doc_short }}",
     "url": "{{ doc_url }}",
-    "usage": "select * from eth_panda_ops__xatu__{{ network }}__{{ dataset }} limit 10",
+    "usage": {% if doc_usage %}"{{ doc_usage }}"{% else %}"select * from eth_panda_ops__xatu__{{ network }}__{{ dataset }} limit 10"{% endif %},
     "columns": [
         {% for column in columns -%}
         {"name": "{{ column.name }}", "type": "{{ column.type}}"}{{ "," if not loop.last else "" }}

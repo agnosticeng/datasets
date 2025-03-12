@@ -5,6 +5,7 @@ files:
     url_pattern: hourly
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API /eth/v1/beacon/states/{state_id}/committees data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(from='2025-01-01', to='2025-01-04')
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_attestation
