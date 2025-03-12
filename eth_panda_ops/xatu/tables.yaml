@@ -1,4 +1,4 @@
-files:
+tables:
   - network: mainnet
     dataset: beacon_api_eth_v1_beacon_committee
     template: hourly_file.sql.tmpl

@@ -1,5 +1,4 @@
 import os
-import argparse 
 import chdb
 from jinja2 import Template
 import yaml
@@ -23,13 +22,9 @@ def write_file(path, content):
         f.write(content)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('config_file')
-    args = parser.parse_args()
+    cnf = load_config(os.path.join(os.path.dirname(__file__), 'tables.yaml'))
 
-    cnf = load_config(args.config_file)
-
-    for f in cnf.get('files', []):
+    for f in cnf.get('tables', []):
         if len(f.get('url', '')) > 0:
             url = f.get('url')
         else: 

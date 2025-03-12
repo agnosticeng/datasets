@@ -1,7 +1,6 @@
 import os
 import re
 import pathlib
-import argparse
 import json 
 from jinja2 import Template
 
@@ -19,11 +18,6 @@ def write_file(path, content):
         f.write(content)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('template_path')
-    parser.add_argument('output_path')
-    args = parser.parse_args()
-
     cwd = pathlib.Path(".")
 
     datasets = {}
@@ -45,5 +39,5 @@ if __name__ == '__main__':
         items.append(meta)
         datasets[file.parents[0].as_posix()] = items
 
-    content = load_template(args.template_path).render(datasets=datasets)
-    write_file(args.output_path, content)
+    content = load_template(os.path.join(os.path.dirname(__file__), 'datasets.md.tmpl')).render(datasets=datasets)
+    write_file(os.path.join(os.path.dirname(__file__), 'datasets.md'), content)
