@@ -5,7 +5,7 @@ tables:
     url_pattern: hourly
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API /eth/v1/beacon/states/{state_id}/committees data from each sentry client attached to a beacon node.
-    doc_usage: select * from {{ dataset }}(from='2025-01-01', to='2025-01-04')
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-09-05', to='2023-09-07') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_attestation
@@ -13,196 +13,229 @@ tables:
     url_pattern: hourly
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API eventstream “attestation” data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-06-05', to='2023-06-07') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_blob_sidecar
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API eventstream “blob_sidecar” data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-03-13', to='2024-03-15') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_block
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API eventstream “block” data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-02-28', to='2023-03-02') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_chain_reorg
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API eventstream “chain reorg” data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-03-01', to='2023-03-03') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_contribution_and_proof
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API eventstream “contribution and proof” data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-08-31', to='2023-09-02') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_finalized_checkpoint
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API eventstream “finalized checkpoint” data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-04-10', to='2023-04-12') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_head
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API eventstream “head” data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-08-30', to='2023-09-02') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_events_voluntary_exit
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API eventstream “voluntary exit” data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_validator_attestation_data
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API validator attestation data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-08-31', to='2023-09-02') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v2_beacon_block
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API /eth/v2/beacon/blocks/{block_id} data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-11-14', to='2023-11-16') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v1_proposer_duty
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains a proposer duty from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-04-03', to='2024-04-05') limit 10
 
   - network: mainnet
     dataset: beacon_api_eth_v3_validator_block
     template: hourly_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/beacon_api_/
     doc_short: Contains beacon API /eth/v3/validator/blocks/{slot} data from each sentry client attached to a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-11-25', to='2024-11-27') limit 10
 
   - network: mainnet
     dataset: mempool_transaction
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/mempool_/
     doc_short: Each row represents a transaction that was seen in the mempool by a sentry client. Sentries can report the same transaction multiple times if it has been long enough since the last report.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-07-22', to='2023-07-24') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_block
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains beacon block from a beacon node.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_committee
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains canonical beacon API /eth/v1/beacon/committees data.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_block_attester_slashing
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains attester slashing from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_block_proposer_slashing
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains proposer slashing from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_block_bls_to_execution_change
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains bls to execution change from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-04-12', to='2023-04-14') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_block_execution_transaction
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains execution transaction from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2022-09-06', to='2022-09-08') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_block_voluntary_exit
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains a voluntary exit from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_block_deposit
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains a deposit from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_block_withdrawal
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains a withdrawal from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2023-04-12', to='2023-04-14') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_blob_sidecar
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains a blob sidecar from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-03-13', to='2024-03-15') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_proposer_duty
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains a proposer duty from a beacon block.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_elaborated_attestation
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains elaborated attestations from beacon blocks.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   - network: mainnet
     dataset: canonical_beacon_validators
-    template: daily_file.sql.tmpl
+    template: hourly_file.sql.tmpl
     url_pattern: hourly
     doc_url: https://ethpandaops.io/data/xatu/schema/canonical_beacon_/
     doc_short: Contains a validator state for an epoch.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10
 
   # execution layer datasets are partitioned on block number, so we need a new template
 
   - network: mainnet
     dataset: libp2p_gossipsub_beacon_attestation
-    template: daily_file.sql.tmpl
+    template: hourly_file.sql.tmpl
     url_pattern: hourly
     doc_url: https://ethpandaops.io/data/xatu/schema/libp2p_/
     doc_short: Table for libp2p gossipsub beacon attestation data.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-05-01', to='2024-05-03') limit 10
+
 
   - network: mainnet
     dataset: libp2p_gossipsub_beacon_block
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/libp2p_/
     doc_short: Table for libp2p gossipsub beacon block data.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-04-26', to='2024-04-28') limit 10
 
   - network: mainnet
     dataset: libp2p_gossipsub_blob_sidecar
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/libp2p_/
     doc_short: Table for libp2p gossipsub blob sidecar data.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-06-04', to='2024-06-06') limit 10
 
   - network: mainnet
     dataset: mev_relay_bid_trace
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/mev_relay_/
     doc_short: Contains MEV relay block bids data.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-09-16', to='2024-09-18') limit 10
 
   - network: mainnet
     dataset: mev_relay_proposer_payload_delivered
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/mev_relay_/
     doc_short: Contains MEV relay proposer payload delivered data.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-09-16', to='2024-09-18') limit 10
 
   - network: mainnet
     dataset: mev_relay_validator_registration
     template: daily_file.sql.tmpl
     doc_url: https://ethpandaops.io/data/xatu/schema/mev_relay_/
     doc_short: Contains MEV relay validator registrations data.
+    doc_usage: select * from {{ dataset }}(network = 'mainnet', from='2024-12-11', to='2024-12-13') limit 10
 
 
 
