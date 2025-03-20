@@ -75,7 +75,7 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_blob_sidec
 comment $comment${
     "short": "Contains a blob sidecar from a beacon block.",
     "url": "https://ethpandaops.io/data/xatu/schema/canonical_beacon_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__canonical_beacon_blob_sidecar limit 10",
+    "usage": "select * from canonical_beacon_blob_sidecar(network = 'mainnet', from='2024-03-13', to='2024-03-15') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "slot", "type": "Nullable(UInt32)"},

@@ -72,7 +72,7 @@ create or replace view eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_events_bl
 comment $comment${
     "short": "Contains beacon API eventstream “blob_sidecar” data from each sentry client attached to a beacon node.",
     "url": "https://ethpandaops.io/data/xatu/schema/beacon_api_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_events_blob_sidecar limit 10",
+    "usage": "select * from beacon_api_eth_v1_events_blob_sidecar(network = 'mainnet', from='2024-03-13', to='2024-03-15') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "event_date_time", "type": "Nullable(DateTime64(3, 'UTC'))"},

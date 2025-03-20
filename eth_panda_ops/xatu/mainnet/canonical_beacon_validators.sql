@@ -2,15 +2,15 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_validators
     with 
         (
             select arrayMap(
-                x -> toDate(x),  
-                range(toInt32({from:Date}), toInt32({to:Date}))
+                x -> toDateTime64(x, 0, 'UTC'),
+                range(toInt64({from:DateTime64(3, 'UTC')}), toInt64({to:DateTime64(3, 'UTC')}), 60*60)
             )
-        ) as dates,
+        ) as datetimes,
 
         (
             select arrayMap(
-                x -> toYear(x) || '/' || toMonth(x) || '/' || toDayOfMonth(x),
-                dates
+                x -> toYear(x) || '/' || toMonth(x) || '/' || toDayOfMonth(x) || '/' || toHour(x),
+                datetimes
             )
         ) as files,
 
@@ -73,7 +73,7 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_validators
 comment $comment${
     "short": "Contains a validator state for an epoch.",
     "url": "https://ethpandaops.io/data/xatu/schema/canonical_beacon_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__canonical_beacon_validators limit 10",
+    "usage": "select * from canonical_beacon_validators(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "epoch", "type": "Nullable(UInt32)"},

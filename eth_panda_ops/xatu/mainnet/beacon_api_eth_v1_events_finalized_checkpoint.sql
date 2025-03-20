@@ -68,7 +68,7 @@ create or replace view eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_events_fi
 comment $comment${
     "short": "Contains beacon API eventstream “finalized checkpoint” data from each sentry client attached to a beacon node.",
     "url": "https://ethpandaops.io/data/xatu/schema/beacon_api_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_events_finalized_checkpoint limit 10",
+    "usage": "select * from beacon_api_eth_v1_events_finalized_checkpoint(network = 'mainnet', from='2023-04-10', to='2023-04-12') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "event_date_time", "type": "Nullable(DateTime64(3, 'UTC'))"},

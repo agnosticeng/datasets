@@ -78,7 +78,7 @@ create or replace view eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_events_at
 comment $comment${
     "short": "Contains beacon API eventstream “attestation” data from each sentry client attached to a beacon node.",
     "url": "https://ethpandaops.io/data/xatu/schema/beacon_api_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_events_attestation limit 10",
+    "usage": "select * from beacon_api_eth_v1_events_attestation(network = 'mainnet', from='2023-06-05', to='2023-06-07') limit 10",
     "columns": [
         {"name": "event_date_time", "type": "Nullable(DateTime64(3, 'UTC'))"},
         {"name": "slot", "type": "Nullable(UInt32)"},

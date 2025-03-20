@@ -81,7 +81,7 @@ create or replace view eth_panda_ops__xatu__mainnet__mev_relay_bid_trace as (
 comment $comment${
     "short": "Contains MEV relay block bids data.",
     "url": "https://ethpandaops.io/data/xatu/schema/mev_relay_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__mev_relay_bid_trace limit 10",
+    "usage": "select * from mev_relay_bid_trace(network = 'mainnet', from='2024-09-16', to='2024-09-18') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "event_date_time", "type": "Nullable(DateTime64(3, 'UTC'))"},

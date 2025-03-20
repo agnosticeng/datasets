@@ -77,7 +77,7 @@ create or replace view eth_panda_ops__xatu__mainnet__mempool_transaction as (
 comment $comment${
     "short": "Each row represents a transaction that was seen in the mempool by a sentry client. Sentries can report the same transaction multiple times if it has been long enough since the last report.",
     "url": "https://ethpandaops.io/data/xatu/schema/mempool_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__mempool_transaction limit 10",
+    "usage": "select * from mempool_transaction(network = 'mainnet', from='2023-07-22', to='2023-07-24') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "event_date_time", "type": "Nullable(DateTime64(3, 'UTC'))"},

@@ -78,7 +78,7 @@ create or replace view eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_validator
 comment $comment${
     "short": "Contains beacon API validator attestation data from each sentry client attached to a beacon node.",
     "url": "https://ethpandaops.io/data/xatu/schema/beacon_api_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__beacon_api_eth_v1_validator_attestation_data limit 10",
+    "usage": "select * from beacon_api_eth_v1_validator_attestation_data(network = 'mainnet', from='2023-08-31', to='2023-09-02') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "event_date_time", "type": "Nullable(DateTime64(3, 'UTC'))"},

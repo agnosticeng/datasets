@@ -80,7 +80,7 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_block_prop
 comment $comment${
     "short": "Contains proposer slashing from a beacon block.",
     "url": "https://ethpandaops.io/data/xatu/schema/canonical_beacon_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__canonical_beacon_block_proposer_slashing limit 10",
+    "usage": "select * from canonical_beacon_block_proposer_slashing(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "slot", "type": "Nullable(UInt32)"},

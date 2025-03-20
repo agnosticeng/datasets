@@ -86,7 +86,7 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_block_exec
 comment $comment${
     "short": "Contains execution transaction from a beacon block.",
     "url": "https://ethpandaops.io/data/xatu/schema/canonical_beacon_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__canonical_beacon_block_execution_transaction limit 10",
+    "usage": "select * from canonical_beacon_block_execution_transaction(network = 'mainnet', from='2022-09-06', to='2022-09-08') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "slot", "type": "Nullable(UInt32)"},

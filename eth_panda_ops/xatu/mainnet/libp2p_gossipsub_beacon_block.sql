@@ -76,7 +76,7 @@ create or replace view eth_panda_ops__xatu__mainnet__libp2p_gossipsub_beacon_blo
 comment $comment${
     "short": "Table for libp2p gossipsub beacon block data.",
     "url": "https://ethpandaops.io/data/xatu/schema/libp2p_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__libp2p_gossipsub_beacon_block limit 10",
+    "usage": "select * from libp2p_gossipsub_beacon_block(network = 'mainnet', from='2024-04-26', to='2024-04-28') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "version", "type": "Nullable(UInt32)"},

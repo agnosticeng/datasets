@@ -70,7 +70,7 @@ create or replace view eth_panda_ops__xatu__mainnet__mev_relay_validator_registr
 comment $comment${
     "short": "Contains MEV relay validator registrations data.",
     "url": "https://ethpandaops.io/data/xatu/schema/mev_relay_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__mev_relay_validator_registration limit 10",
+    "usage": "select * from mev_relay_validator_registration(network = 'mainnet', from='2024-12-11', to='2024-12-13') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "event_date_time", "type": "Nullable(DateTime64(3, 'UTC'))"},

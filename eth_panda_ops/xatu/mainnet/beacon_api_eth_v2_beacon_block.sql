@@ -89,7 +89,7 @@ create or replace view eth_panda_ops__xatu__mainnet__beacon_api_eth_v2_beacon_bl
 comment $comment${
     "short": "Contains beacon API /eth/v2/beacon/blocks/{block_id} data from each sentry client attached to a beacon node.",
     "url": "https://ethpandaops.io/data/xatu/schema/beacon_api_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__beacon_api_eth_v2_beacon_block limit 10",
+    "usage": "select * from beacon_api_eth_v2_beacon_block(network = 'mainnet', from='2023-11-14', to='2023-11-16') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "event_date_time", "type": "Nullable(DateTime64(3, 'UTC'))"},

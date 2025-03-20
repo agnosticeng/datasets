@@ -81,7 +81,7 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_elaborated
 comment $comment${
     "short": "Contains elaborated attestations from beacon blocks.",
     "url": "https://ethpandaops.io/data/xatu/schema/canonical_beacon_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__canonical_beacon_elaborated_attestation limit 10",
+    "usage": "select * from canonical_beacon_elaborated_attestation(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "block_slot", "type": "Nullable(UInt32)"},

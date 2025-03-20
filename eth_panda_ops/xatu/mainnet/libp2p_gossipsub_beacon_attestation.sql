@@ -2,15 +2,15 @@ create or replace view eth_panda_ops__xatu__mainnet__libp2p_gossipsub_beacon_att
     with 
         (
             select arrayMap(
-                x -> toDate(x),  
-                range(toInt32({from:Date}), toInt32({to:Date}))
+                x -> toDateTime64(x, 0, 'UTC'),
+                range(toInt64({from:DateTime64(3, 'UTC')}), toInt64({to:DateTime64(3, 'UTC')}), 60*60)
             )
-        ) as dates,
+        ) as datetimes,
 
         (
             select arrayMap(
-                x -> toYear(x) || '/' || toMonth(x) || '/' || toDayOfMonth(x),
-                dates
+                x -> toYear(x) || '/' || toMonth(x) || '/' || toDayOfMonth(x) || '/' || toHour(x),
+                datetimes
             )
         ) as files,
 
@@ -85,7 +85,7 @@ create or replace view eth_panda_ops__xatu__mainnet__libp2p_gossipsub_beacon_att
 comment $comment${
     "short": "Table for libp2p gossipsub beacon attestation data.",
     "url": "https://ethpandaops.io/data/xatu/schema/libp2p_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__libp2p_gossipsub_beacon_attestation limit 10",
+    "usage": "select * from libp2p_gossipsub_beacon_attestation(network = 'mainnet', from='2024-05-01', to='2024-05-03') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "version", "type": "Nullable(UInt32)"},

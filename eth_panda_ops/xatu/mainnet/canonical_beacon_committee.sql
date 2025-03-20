@@ -68,7 +68,7 @@ create or replace view eth_panda_ops__xatu__mainnet__canonical_beacon_committee 
 comment $comment${
     "short": "Contains canonical beacon API /eth/v1/beacon/committees data.",
     "url": "https://ethpandaops.io/data/xatu/schema/canonical_beacon_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__canonical_beacon_committee limit 10",
+    "usage": "select * from canonical_beacon_committee(network = 'mainnet', from='2020-12-01', to='2020-12-03') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "slot", "type": "Nullable(UInt32)"},

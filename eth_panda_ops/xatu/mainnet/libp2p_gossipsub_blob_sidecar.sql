@@ -78,7 +78,7 @@ create or replace view eth_panda_ops__xatu__mainnet__libp2p_gossipsub_blob_sidec
 comment $comment${
     "short": "Table for libp2p gossipsub blob sidecar data.",
     "url": "https://ethpandaops.io/data/xatu/schema/libp2p_/",
-    "usage": "select * from eth_panda_ops__xatu__mainnet__libp2p_gossipsub_blob_sidecar limit 10",
+    "usage": "select * from libp2p_gossipsub_blob_sidecar(network = 'mainnet', from='2024-06-04', to='2024-06-06') limit 10",
     "columns": [
         {"name": "updated_date_time", "type": "Nullable(UInt32)"},
         {"name": "version", "type": "Nullable(UInt32)"},
