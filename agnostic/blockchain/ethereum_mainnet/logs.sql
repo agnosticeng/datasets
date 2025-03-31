@@ -2,7 +2,7 @@ create or replace view agnostic__blockchain__ethereum_mainnet__logs as (
     select
         date,
         *
-    from s3 ('https://data.agnostic.dev/ethereum-mainnet-pq/logs/date=*/*.parquet') 
+    from s3 ('https://data.agnostic.dev/agnostic-data-pq-ethereum-mainnet/logs/date=*/*.parquet') 
 )
 comment $comment${
     "short": "Event log data.",

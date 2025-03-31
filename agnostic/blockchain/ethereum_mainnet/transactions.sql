@@ -2,7 +2,7 @@ create or replace view agnostic__blockchain__ethereum_mainnet__transactions as (
     select
         date,
         *
-    from s3 ('https://data.agnostic.dev/ethereum-mainnet-pq/transactions/date=*/*.parquet') 
+    from s3 ('https://data.agnostic.dev/agnostic-data-pq-ethereum-mainnet/transactions/date=*/*.parquet') 
 )
 comment $comment${
     "short": "Transaction data",
