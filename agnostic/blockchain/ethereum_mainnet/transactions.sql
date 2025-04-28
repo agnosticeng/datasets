@@ -2,7 +2,7 @@ create or replace view agnostic__blockchain__ethereum_mainnet__transactions as (
     select
         toDate(timestamp) as date,
         *
-    from iceberg('https://data.agnostic.dev/agnostic-ethereum-mainnet/transactions')
+    from iceberg('https://data.agnostic.dev/agnostic-ethereum-mainnet/transactions', settings iceberg_use_version_hint=true)
 )
 comment $comment${
     "short": "Transaction data",
